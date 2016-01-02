@@ -1,0 +1,24 @@
+{
+  "name": "tree-view-copy-relative-path",
+  "main": "./lib/tree-view-copy-relative-path",
+  "version": "0.0.1",
+  "description": "Allows you to copy relative path to current file from tree view.",
+  "keywords": [
+    "tree-view",
+    "relative path"
+  ],
+  "activationCommands": {
+    "atom-workspace": "tree-view-copy-relative-path:copy-path"
+  },
+  "repository": "https://github.com/vladimir-tikhonov/tree-view-copy-relative-path",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "relative": "^3.0.2"
+  },
+  "devDependencies": {
+    "coffeelint": "^1.14.2"
+  }
+}

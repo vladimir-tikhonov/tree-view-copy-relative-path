@@ -1,0 +1,7 @@
+'context-menu':
+  '.tree-view .file': [
+    {
+      'label': 'Copy Relative Path'
+      'command': 'tree-view-copy-relative-path:copy-path'
+    }
+  ]
