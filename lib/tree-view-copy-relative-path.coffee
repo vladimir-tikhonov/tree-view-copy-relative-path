@@ -18,6 +18,11 @@ module.exports = TreeViewCopyRelativePath =
   SELECTOR: '.tree-view .file'
   COMMAND: 'tree-view-copy-relative-path:copy-path'
   subscriptions: null
+  config:
+    replaceBackslashes:
+      title: 'Replace backslashes (\\) with forward slashes (/) (usefull for Windows)'
+      type: 'boolean'
+      default: true
 
   activate: (state) ->
     command = atom.commands.add @SELECTOR,
@@ -33,10 +38,14 @@ module.exports = TreeViewCopyRelativePath =
   copyRelativePath: (treeViewPath) ->
     return if not treeViewPath
 
-    currentPath = atom.workspace.getActivePaneItem()?.buffer.file?.path
+    currentPath = atom.workspace.getActivePaneItem()?.buffer?.file?.path
     unless currentPath
       atom.notifications.addWarning '"Copy Relative Path" command
         has no effect when no files are open'
       return
 
-    atom.clipboard.write relative(currentPath, treeViewPath)
+    relativePath = relative(currentPath, treeViewPath)
+    if atom.config.get('tree-view-copy-relative-path.replaceBackslashes')
+      relativePath = relativePath.replace(/\\/g, "/")
+
+    atom.clipboard.write relativePath
