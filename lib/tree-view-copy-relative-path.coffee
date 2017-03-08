@@ -15,7 +15,7 @@ extractPath = (element) ->
   path
 
 module.exports = TreeViewCopyRelativePath =
-  SELECTOR: '.tree-view .file'
+  SELECTOR: '.tree-view .entry'
   COMMAND: 'tree-view-copy-relative-path:copy-path'
   subscriptions: null
   config:
@@ -45,6 +45,8 @@ module.exports = TreeViewCopyRelativePath =
       return
 
     relativePath = relative(currentPath, treeViewPath)
+    if relativePath.substr(0, 3) != '../'
+      relativePath = './' + relativePath
     if atom.config.get('tree-view-copy-relative-path.replaceBackslashes')
       relativePath = relativePath.replace(/\\/g, "/")
 
