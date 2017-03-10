@@ -1,7 +1,7 @@
 {
   "name": "tree-view-copy-relative-path",
   "main": "./lib/tree-view-copy-relative-path",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Allows you to copy relative path to current file from tree view.",
   "keywords": [
     "tree-view",
