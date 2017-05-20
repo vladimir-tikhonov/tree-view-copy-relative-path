@@ -38,7 +38,8 @@ module.exports = TreeViewCopyRelativePath =
   copyRelativePath: (treeViewPath) ->
     return if not treeViewPath
 
-    currentPath = atom.workspace.getActivePaneItem()?.buffer?.file?.path
+    currentPath = atom.workspace?.paneContainers?.center?.paneContainer?.activePane?.activeItem?.buffer?.file?.path
+
     unless currentPath
       atom.notifications.addWarning '"Copy Relative Path" command
         has no effect when no files are open'
