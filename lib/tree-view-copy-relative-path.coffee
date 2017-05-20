@@ -1,4 +1,4 @@
-{CompositeDisposable} = require 'atom'
+{CompositeDisposable, TextEditor} = require 'atom'
 relative = require 'relative'
 
 extractPath = (element) ->
@@ -38,7 +38,10 @@ module.exports = TreeViewCopyRelativePath =
   copyRelativePath: (treeViewPath) ->
     return if not treeViewPath
 
-    currentPath = atom.workspace.getActivePaneItem()?.buffer?.file?.path
+    activeTextEditor = atom.workspace.getActiveTextEditor() ||
+      atom.workspace.getPanes().find(({activeItem}) => activeItem instanceof TextEditor)?.activeItem
+    currentPath = activeTextEditor?.getPath()
+
     unless currentPath
       atom.notifications.addWarning '"Copy Relative Path" command
         has no effect when no files are open'
