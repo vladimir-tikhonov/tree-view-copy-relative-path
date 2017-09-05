@@ -20,9 +20,13 @@ module.exports = TreeViewCopyRelativePath =
   subscriptions: null
   config:
     replaceBackslashes:
-      title: 'Replace backslashes (\\) with forward slashes (/) (usefull for Windows)'
+      title: 'Replace backslashes (\\) with forward slashes (/) (useful for Windows)'
       type: 'boolean'
       default: true
+    copyWithoutFileExtension:
+      title: 'Copy without file extension (useful for a framework, e.g. angular)'
+      type: 'boolean',
+      default: false
 
   activate: (state) ->
     command = atom.commands.add @SELECTOR,
@@ -52,5 +56,7 @@ module.exports = TreeViewCopyRelativePath =
       relativePath = './' + relativePath
     if atom.config.get('tree-view-copy-relative-path.replaceBackslashes')
       relativePath = relativePath.replace(/\\/g, "/")
+    if atom.config.get('tree-view-copy-relative-path.copyWithoutFileExtension')
+      relativePath = relativePath.substr(0, relativePath.lastIndexOf('.')) || relativePath;
 
     atom.clipboard.write relativePath
