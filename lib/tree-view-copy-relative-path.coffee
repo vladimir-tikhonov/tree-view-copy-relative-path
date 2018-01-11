@@ -20,7 +20,7 @@ module.exports = TreeViewCopyRelativePath =
   subscriptions: null
   config:
     replaceBackslashes:
-      title: 'Replace backslashes (\\) with forward slashes (/) (usefull for Windows)'
+      title: 'Replace backslashes (\\) with forward slashes (/) (useful for Windows)'
       type: 'boolean'
       default: true
 
