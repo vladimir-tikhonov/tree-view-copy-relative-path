@@ -23,6 +23,11 @@ module.exports = TreeViewCopyRelativePath =
       title: 'Replace backslashes (\\) with forward slashes (/) (usefull for Windows)'
       type: 'boolean'
       default: true
+      
+    removeExtension:
+      title: 'Remove the file extension (useful for TypeScript imports)'
+      type: 'boolean'
+      default: false
 
   activate: (state) ->
     command = atom.commands.add @SELECTOR,
@@ -52,5 +57,7 @@ module.exports = TreeViewCopyRelativePath =
       relativePath = './' + relativePath
     if atom.config.get('tree-view-copy-relative-path.replaceBackslashes')
       relativePath = relativePath.replace(/\\/g, "/")
+    if atom.config.get('tree-view-copy-relative-path.removeExtension')
+      relativePath = relativePath.replace(/(.*)\.[^.]+$/, '$1')
 
     atom.clipboard.write relativePath
